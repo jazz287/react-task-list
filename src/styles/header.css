@@ -1,7 +1,7 @@
 .header{
     display: flex;
     justify-content: space-between;
-    width: 400px;
+    width: 450px;
     padding-bottom: 15px;
     border-bottom: 1px solid #282828;
 }
@@ -9,11 +9,16 @@
 .header div:first-child span:first-child{
     color: #b4b4b4;
     font-weight: bold;
+    font-size: 14px;
 }
 .header div:first-child span:last-child{
     color: #808080;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .header div:last-child{
     color: #919191;
+    font-size: 14px;
+    font-weight: 500;
 }

@@ -11,12 +11,7 @@ function MainInput() {
     <div className={"input-wrapper " + (focused ? "input-wrapper-active" : "")}>
       <div className="main-input">
         <div className="prefix">
-          <PlusOutlined
-            style={{
-              width: "15px",
-              height: "15px",
-            }}
-          />
+          <PlusOutlined />
         </div>
         <input
           type="text"

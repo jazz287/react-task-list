@@ -1,0 +1,43 @@
+.tlt{
+    padding: 10px 16px;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tlt:hover{
+    background-color: #282828;
+}
+
+.tlt span:first-child{
+    display: flex;
+}
+/* check icon customizations */
+.tlt svg{
+    width: 20px;
+    height: 20px;
+}
+
+.tlt svg path:first-child{
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.tlt:is(.tlt-checked) svg path:first-child{
+    opacity: 1;
+}
+
+.tlt .title{
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+.tlt .trailing{
+    color: #919191;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Animated Line across logic */
