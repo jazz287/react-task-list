@@ -13,10 +13,9 @@ function TaskListTile({ title, dueDate }) {
     >
       <span>
         <CheckCircleOutlined />
-        <div className="title">{title}
-            <div className="lineAcross">
-                _________________________
-            </div>
+        <div className="title">
+          {title}
+          <div className="lineAcross"></div>
         </div>
       </span>
       <span className="trailing">{dueDate}</span>
