@@ -1,0 +1,19 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #282828;
+}
+
+.header div:first-child span:first-child{
+    color: #b4b4b4;
+    font-weight: bold;
+}
+.header div:first-child span:last-child{
+    color: #808080;
+}
+
+.header div:last-child{
+    color: #919191;
+}

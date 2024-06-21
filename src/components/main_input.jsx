@@ -8,7 +8,7 @@ function MainInput() {
   const onBlur = () => setFocused(false);
 
   return (
-    <div className={focused ? "input-wrapper" : ""}>
+    <div className={"input-wrapper " + (focused ? "input-wrapper-active" : "")}>
       <div className="main-input">
         <div className="prefix">
           <PlusOutlined

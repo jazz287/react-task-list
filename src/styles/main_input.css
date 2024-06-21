@@ -1,11 +1,14 @@
 .input-wrapper{
     padding: 2.5px;
-    border: 2px solid #525252;
+    border: 2px solid transparent;
     border-radius: 8px;
+}
+.input-wrapper-active{
+    border: 2px solid #525252;
 }
 
 .main-input{
-    width: 400px;
+    width: 425px;
     padding: 8px;
     background-color: #111111;
     border: 1.5px solid #282828;
