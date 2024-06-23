@@ -1,8 +1,17 @@
-# React + Vite
+# React Task List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple task list application built with React. It allows users to add, delete, and mark tasks as completed. The User Interface is inspired by the [md (Dribbble)](https://dribbble.com/shots/21947540-Simple-ToDo). And the application focuses on details, and user experience with smooth animations and transitions.
 
-Currently, two official plugins are available:
+## Run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Clone the repository
+2. Run `npm install` to install the dependencies
+3. Run `npm run dev` to start the local development server
+
+`
+Important: This application was made as an assignment so it doesnt use localStorage so save tasks, instead there's a backend made specifically for this application. If you want to run the application locally you will need to run the backend as well. You can find the backend repository right below this message
+`
+
+`The Application can also work without the backend, but the tasks will be lost when the page is refreshed.`
+
+[Click here to visit Backend Repository](https://github.com/jazz287/react-task-list-backend)
