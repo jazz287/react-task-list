@@ -8,6 +8,16 @@
     margin-bottom: 10px;
 }
 
+.edit-options button:first-child{
+    /* dark shade of red */
+    background-color: rgb(130, 70, 70);
+}
+
+.edit-options button:last-child{
+    /* dark shade of green */
+    background-color: rgb(70, 130, 70);
+}
+
 .edit-options .label{
     color: #b4b4b4;
     font-size: 14px;
