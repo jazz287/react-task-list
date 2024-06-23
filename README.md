@@ -16,3 +16,8 @@ Important: This application was made as an assignment so it doesnt use localStor
 `The Application can also work without the backend, but the tasks will be lost when the page is refreshed.`
 
 [Click here to visit Backend Repository](https://github.com/jazz287/react-task-list-backend)
+
+## Screenshots
+
+![43e9c635-c060-42c4-beb1-37f53a9c48f0](https://github.com/jazz287/react-task-list/assets/78864460/d99ed2e3-6cfb-4e4a-95c1-85f41cf938f2)
+![8f71b70f-a8e7-4d43-9d7a-48acfa1504b3](https://github.com/jazz287/react-task-list/assets/78864460/2e2215a6-ce05-4bd0-ba84-6f03264a28f2)
