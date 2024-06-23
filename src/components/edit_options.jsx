@@ -5,6 +5,9 @@ import { CalendarOutlined } from "@ant-design/icons";
 import DateFormatter from "../utils/date_formatter";
 import { useEffect } from "react";
 import Task from "../models/task";
+import { updateTask } from "../services/task_service";
+import { toast } from "react-toastify";
+import { toastify_options } from "../models/toastify_options";
 
 function EditOptions({ task, onCancel, onSave }) {
   useEffect(() => {
@@ -57,6 +60,10 @@ function EditOptions({ task, onCancel, onSave }) {
             newTask.dueDate = new Date(
               document.querySelector(".edit-date").value
             ).getTime();
+
+            updateTask(newTask).catch((error) => {
+              toast.error(error.message, toastify_options);
+            });
 
             onSave(newTask);
           }}

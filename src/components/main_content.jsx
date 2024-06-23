@@ -7,8 +7,14 @@ import EditOptions from "./edit_options";
 import { PlusOutlined, EditOutlined } from "@ant-design/icons";
 import Task from "../models/task";
 import Spacer from "./spacer";
-import { fetchAllTasks } from "../services/task_service";
+import {
+  createTask,
+  deleteTask,
+  fetchAllTasks,
+} from "../services/task_service";
 import { Slide, ToastContainer, toast } from "react-toastify";
+import { v4 } from "uuid";
+import { toastify_options } from "../models/toastify_options";
 
 function MainContent() {
   const [loading, setLoading] = useState(true);
@@ -28,48 +34,18 @@ function MainContent() {
       try {
         var data = await fetchAllTasks();
         setTasks(data);
-        toast.success("Connected to backend server", {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Slide,
-        });
+        toast.success("Connected to backend server", toastify_options);
       } catch (error) {
         var msg = error.message;
         if (msg === "Failed to fetch") {
           msg =
             "Failed to fetch tasks. Please make sure the backend server is running on port 3000";
         }
-        toast.error(msg, {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Slide,
-        });
+        toast.error(msg, toastify_options);
         setTimeout(() => {
           toast.info(
             "Backend is not available, all new modifications will be lost on refresh",
-            {
-              position: "bottom-right",
-              autoClose: 8000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-              transition: Slide,
-            }
+            toastify_options
           );
         }, 2000);
       }
@@ -90,16 +66,17 @@ function MainContent() {
         inputClassName="main-input"
         onSubmit={(title) => {
           if (editTaskId == null && title.trim().length !== 0) {
-            setTasks([
-              ...tasks,
-              new Task(
-                tasks.length + 1,
-                title,
-                "Edit to add a description",
-                false,
-                Date.now()
-              ),
-            ]);
+            var newTask = new Task(
+              v4(),
+              title,
+              "Edit to add a description",
+              false,
+              Date.now()
+            );
+            setTasks([...tasks, newTask]);
+            createTask(newTask).catch((error) => {
+              toast.error(error.message, toastify_options);
+            });
           }
           // Return empty string to clear the input
           return "";
@@ -190,6 +167,13 @@ function HeaderWithContent({
               }}
               onDelete={() => {
                 setTasks(tasks.filter((t) => t.id !== task.id));
+                deleteTask(task.id)
+                  .then(() => {
+                    toast.success("Task deleted successfully", toastify_options);
+                  })
+                  .catch((error) => {
+                    toast.error(error.message, toastify_options);
+                  });
               }}
             />
           );
