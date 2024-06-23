@@ -61,9 +61,13 @@ function EditOptions({ task, onCancel, onSave }) {
               document.querySelector(".edit-date").value
             ).getTime();
 
-            updateTask(newTask).catch((error) => {
-              toast.error(error.message, toastify_options);
-            });
+            updateTask(newTask)
+              .then(() => {
+                toast.success("Task updated successfully!", toastify_options);
+              })
+              .catch((error) => {
+                toast.error(error.message, toastify_options);
+              });
 
             onSave(newTask);
           }}

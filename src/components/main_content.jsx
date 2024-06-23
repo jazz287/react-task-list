@@ -11,6 +11,7 @@ import {
   createTask,
   deleteTask,
   fetchAllTasks,
+  updateTask,
 } from "../services/task_service";
 import { ToastContainer, toast } from "react-toastify";
 import { v4 } from "uuid";
@@ -153,6 +154,10 @@ function HeaderWithContent({
               key={task.id}
               task={task}
               onToggle={(newIsCompleted) => {
+                var newObj = { ...task, isCompleted: newIsCompleted };
+                updateTask(newObj).catch((error) => {
+                  toast.error(error.message, toastify_options);
+                });
                 setTasks(
                   tasks.map((t) => {
                     if (t.title === task.title) {
