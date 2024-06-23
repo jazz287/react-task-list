@@ -12,7 +12,7 @@ import {
   deleteTask,
   fetchAllTasks,
 } from "../services/task_service";
-import { Slide, ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { v4 } from "uuid";
 import { toastify_options } from "../models/toastify_options";
 
