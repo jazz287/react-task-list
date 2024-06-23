@@ -16,6 +16,7 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import { v4 } from "uuid";
 import { toastify_options } from "../models/toastify_options";
+import EmptyState from "./empty_state";
 
 function MainContent() {
   const [loading, setLoading] = useState(true);
@@ -148,6 +149,7 @@ function HeaderWithContent({
     <>
       <Header title={heading} itemCount={headingCount} />
       <AnimateGroup>
+        {headingCount === 0 && heading == "ToDo" ? <EmptyState key={heading + "_state"} /> : <></>}
         {tasksList.map((task) => {
           return (
             <TaskListTile
@@ -174,7 +176,10 @@ function HeaderWithContent({
                 setTasks(tasks.filter((t) => t.id !== task.id));
                 deleteTask(task.id)
                   .then(() => {
-                    toast.success("Task deleted successfully", toastify_options);
+                    toast.success(
+                      "Task deleted successfully",
+                      toastify_options
+                    );
                   })
                   .catch((error) => {
                     toast.error(error.message, toastify_options);

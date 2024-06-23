@@ -9,6 +9,13 @@
   overflow: hidden;
 }
 
+
+@media (max-width: 768px) {
+  .tlt {
+    width: 100%;
+  }
+}
+
 /* forces the div added by react-animate-mount library to occupy full width so that the tile doesnt appear compact */
 div:has(div > .tlt) {
   width: 100%;

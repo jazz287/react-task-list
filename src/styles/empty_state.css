@@ -1,0 +1,8 @@
+.empty-state{
+    margin: 15px auto;
+}
+
+.empty-state h3 {
+    font-size: .71rem;
+    color: #919191;
+}

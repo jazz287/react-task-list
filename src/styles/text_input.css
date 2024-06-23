@@ -18,6 +18,22 @@
   align-items: center;
 }
 
+
+@media (max-width: 768px) {
+  .text-input {
+    width: 100%;
+  }
+
+  .text-input input {
+    font-size: 0.9em;
+  }
+
+  .input-wrapper {
+    width: 100%;
+    margin: 6px;
+  }
+}
+
 .prefix {
   display: inherit;
   place-content: inherit;
