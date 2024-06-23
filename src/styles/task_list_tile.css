@@ -1,129 +1,132 @@
-.tlt{
-    padding: 10px 16px;
-    border-radius: 8px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    overflow: hidden;
+.tlt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 10px 16px;
+  border-radius: 8px;
+  width: 475px;
+  overflow: hidden;
 }
 
 /* forces the div added by react-animate-mount library to occupy full width so that the tile doesnt appear compact */
-div:has(div > .tlt){
-    width: 100%;
+div:has(div > .tlt) {
+  width: 100%;
 }
 
-.tlt:hover{
-    background-color: #282828;
+div:has(.tlt) {
+  align-items: center;
 }
 
-.tlt span:first-child{
-    display: flex;
+.tlt:hover {
+  background-color: #282828;
+}
+
+.tlt span:first-child {
+  display: flex;
 }
 /* check icon customizations */
-.tlt .left svg{
-    width: 20px;
-    height: 20px;
+.tlt .left svg {
+  width: 20px;
+  height: 20px;
 }
 
-.tlt .left svg path:first-child{
-    opacity: 0;
-    transition: opacity 0.2s;
+.tlt .left svg path:first-child {
+  opacity: 0;
+  transition: opacity 0.2s;
 }
 
-.tlt:is(.tlt-checked) .left svg path:first-child{
-    animation: showCheck 250ms ease-in-out;
-    animation-fill-mode: forwards;
-    animation-delay: 300ms;
+.tlt:is(.tlt-checked) .left svg path:first-child {
+  animation: showCheck 250ms ease-in-out;
+  animation-fill-mode: forwards;
+  animation-delay: 300ms;
 }
 
-.tlt .title{
-    font-size: 15px;
-    margin-left: 10px;
-    position: relative;
+.tlt .title {
+  font-size: 15px;
+  margin-left: 10px;
+  position: relative;
 }
 
-.tlt .trailing{
-    color: #919191;
-    font-size: 13px;
-    font-weight: 500;
+.tlt .trailing {
+  color: #919191;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 /* Animated Line across logic */
-.tlt .title .lineAcross{
-    width: 100%;
-    height: 1.5px;
-    background-color: #b4b4b4;
-    transition: all 0.2s;
-    position: absolute;
-    bottom: 0px;
-    opacity: 0;
+.tlt .title .lineAcross {
+  width: 100%;
+  height: 1.5px;
+  background-color: #b4b4b4;
+  transition: all 0.2s;
+  position: absolute;
+  bottom: 0px;
+  opacity: 0;
 }
 
 .tlt:is(.tlt-checked) .title {
-    color: #b4b4b4;
+  color: #b4b4b4;
 }
 
-.tlt:is(.tlt-checked) .title .lineAcross{
-    /* bottom: 10px;
+.tlt:is(.tlt-checked) .title .lineAcross {
+  /* bottom: 10px;
     opacity: 1; */
-    animation: lineEnterAnimation 250ms ease-in-out;
-    animation-fill-mode: forwards;
-    animation-delay: 300ms;
+  animation: lineEnterAnimation 250ms ease-in-out;
+  animation-fill-mode: forwards;
+  animation-delay: 300ms;
 }
 
 /* trailing options */
-.option{
-    background-color: #111111;
-    padding: 2px 4px;
-    border-radius: 6px;
+.option {
+  background-color: #111111;
+  padding: 2px 4px;
+  border-radius: 6px;
 }
 
-.option:hover{
-    opacity: .75;
+.option:hover {
+  opacity: 0.75;
 }
 
-.trailing-options{
-    display: flex;
-    position: absolute;
-    gap: 5px;
-    height: 25px;
-    width: 25px;
-    right: -30px;
-    top: 25%;
-    transition: all 150ms;
-    /* modifying the pointer events so that options dont respond to hover while they are still animation to visibility */
-    pointer-events: none;
+.trailing-options {
+  display: flex;
+  position: absolute;
+  gap: 5px;
+  height: 25px;
+  width: 25px;
+  right: -30px;
+  top: 25%;
+  transition: all 150ms;
+  /* modifying the pointer events so that options dont respond to hover while they are still animation to visibility */
+  pointer-events: none;
 }
 
-.tlt:hover .trailing-options{
-    right: 30px;
-    pointer-events: all;
+.tlt:hover .trailing-options {
+  right: 30px;
+  pointer-events: all;
 }
 
-.tlt:hover .trailing-text{
-    color: transparent;
+.tlt:hover .trailing-text {
+  color: transparent;
 }
-
 
 /* animations for selected task mount */
-@keyframes lineEnterAnimation{
-    from {
-        bottom: 0px;
-        opacity: 0;
-    }
-    to{
-        bottom: 10px;
-        opacity: 1;
-    }
+@keyframes lineEnterAnimation {
+  from {
+    bottom: 0px;
+    opacity: 0;
+  }
+  to {
+    bottom: 10px;
+    opacity: 1;
+  }
 }
 
-@keyframes showCheck{
-    from{
-        opacity: 0;
-    }
-    to{
-        opacity: 1;
-    }
+@keyframes showCheck {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

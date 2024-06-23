@@ -1,0 +1,25 @@
+.navbar{
+    /* background-color: #333; */
+    color: white;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar div:first-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar .slash{
+    margin : 5px 30px;
+    /* create a slanting grey line with css */
+    width: 1px;
+    height: 30px;
+    background-color: grey;
+
+    /* rotate the line */
+    transform: rotate(25deg);
+}

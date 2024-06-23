@@ -6,16 +6,19 @@ import TaskListTile from "./components/task_list_tile";
 import "./styles/App.css";
 import { AnimateGroup } from "react-animate-mount";
 import Task from "./models/task";
+import Navbar from "./components/navbar";
 
 function App() {
   const [tasks, setTasks] = useState([
-    new Task(1, "Feed the dogs", "Feed the dogs", false, "Nov 10"),
-    new Task(2, "Eat Ramen", "Eat Ramen", false, "Nov 10"),
-    new Task(3, "Survive", "Survive", false, "Nov 10"),
-    new Task(4, "Touch Grass", "Touch Grass", false, "Nov 10"),
+    // new Task(1, "Feed the dogs", "Feed the dogs", false, "Nov 10"),
+    // new Task(2, "Eat Ramen", "Eat Ramen", false, "Nov 10"),
+    // new Task(3, "Survive", "Survive", false, "Nov 10"),
+    // new Task(4, "Touch Grass", "Touch Grass", false, "Nov 10"),
   ]);
   return (
     <>
+      <Navbar />
+      <Spacer height="100px" />
       <main>
         <MainInput
           onSubmit={(title) => {

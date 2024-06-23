@@ -1,11 +1,10 @@
 #root {
   width: 100vw;
-  display: flex;
-  place-content: center;
 }
 
 main{
   display: flex;
   flex-direction: column;
   align-items: center;
+  place-content: center;
 }
