@@ -4,6 +4,7 @@ This is a simple task list application built with React. It allows users to add,
 
 ## Run locally
 
+0. Make sure you have Node.js installed and you have [the backend running](https://github.com/jazz287/react-task-list-backend) before doing the following steps (Check the below note for more information)
 1. Clone the repository
 2. Run `npm install` to install the dependencies
 3. Run `npm run dev` to start the local development server
