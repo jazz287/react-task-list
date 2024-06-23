@@ -5,8 +5,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
+    overflow: hidden;
 }
 
+/* forces the div added by react-animate-mount library to occupy full width so that the tile doesnt appear compact */
 div:has(div > .tlt){
     width: 100%;
 }
@@ -19,17 +22,17 @@ div:has(div > .tlt){
     display: flex;
 }
 /* check icon customizations */
-.tlt svg{
+.tlt .left svg{
     width: 20px;
     height: 20px;
 }
 
-.tlt svg path:first-child{
+.tlt .left svg path:first-child{
     opacity: 0;
     transition: opacity 0.2s;
 }
 
-.tlt:is(.tlt-checked) svg path:first-child{
+.tlt:is(.tlt-checked) .left svg path:first-child{
     animation: showCheck 250ms ease-in-out;
     animation-fill-mode: forwards;
     animation-delay: 300ms;
@@ -69,6 +72,40 @@ div:has(div > .tlt){
     animation-fill-mode: forwards;
     animation-delay: 300ms;
 }
+
+/* trailing options */
+.option{
+    background-color: #111111;
+    padding: 2px 4px;
+    border-radius: 6px;
+}
+
+.option:hover{
+    opacity: .75;
+}
+
+.trailing-options{
+    display: flex;
+    position: absolute;
+    gap: 5px;
+    height: 25px;
+    width: 25px;
+    right: -30px;
+    top: 25%;
+    transition: all 150ms;
+    /* modifying the pointer events so that options dont respond to hover while they are still animation to visibility */
+    pointer-events: none;
+}
+
+.tlt:hover .trailing-options{
+    right: 30px;
+    pointer-events: all;
+}
+
+.tlt:hover .trailing-text{
+    color: transparent;
+}
+
 
 /* animations for selected task mount */
 @keyframes lineEnterAnimation{
