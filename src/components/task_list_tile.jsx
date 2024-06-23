@@ -4,6 +4,7 @@ import {
   EditFilled,
 } from "@ant-design/icons";
 import "../styles/task_list_tile.css";
+import DateFormatter from "../utils/date_formatter";
 
 function TaskListTile({ title, dueDate, onToggle, isCompleted, onEditInitiate, onDelete }) {
   return (
@@ -21,7 +22,7 @@ function TaskListTile({ title, dueDate, onToggle, isCompleted, onEditInitiate, o
         </div>
       </span>
       <div className="trailing">
-        <span className="trailing-text">{dueDate}</span>
+        <span className="trailing-text">{DateFormatter.formateToMD(dueDate)}</span>
         <div className="trailing-options">
           <EditFilled
             className="option"

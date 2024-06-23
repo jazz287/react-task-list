@@ -13,11 +13,17 @@ import { PlusOutlined, EditOutlined } from "@ant-design/icons";
 function App() {
   const [editTaskId, setEditTaskId] = useState(null);
   const [tasks, setTasks] = useState([
-    new Task(1, "Feed the dogs", "Feed the dogs", false, Date.now()),
-    new Task(2, "Eat Ramen", "Eat Ramen", false, Date.now()),
-    // new Task(3, "Survive", "Survive", false, "Nov 10"),
-    // new Task(4, "Touch Grass", "Touch Grass", false, "Nov 10"),
+    new Task(1, "Feed the dogs", "Feeding Details", false, Date.now()),
+    new Task(2, "Eat Ramen", "Ramen recipe", false, Date.now()),
   ]);
+
+  const getRemainingCount = () => {
+    return tasks.filter((t) => !t.isCompleted).length;
+  };
+
+  const getCompletedCount = () => {
+    return tasks.filter((t) => t.isCompleted).length;
+  };
   return (
     <>
       <Navbar />
@@ -26,19 +32,29 @@ function App() {
         <TextInput
           placeholder={editTaskId == null ? "Add a new task" : "Edit task"}
           prefixIcon={editTaskId == null ? <PlusOutlined /> : <EditOutlined />}
+          inputClassName="main-input"
           onSubmit={(title) => {
-            if (editTaskId == null) {
+            if (editTaskId == null && title.trim().length !== 0) {
               setTasks([
                 ...tasks,
-                new Task(tasks.length + 1, title, title, false, Date.now()),
+                new Task(
+                  tasks.length + 1,
+                  title,
+                  "Edit to add a description",
+                  false,
+                  Date.now()
+                ),
               ]);
             }
+
+            // Return empty string to clear the input
+            return "";
           }}
         />
         <Spacer />
         {editTaskId == null ? (
           <>
-            <Header title={"ToDo"} itemCount={4} />
+            <Header title={"ToDo"} itemCount={getRemainingCount()} />
             <AnimateGroup>
               {tasks.map((task) => {
                 if (!task.isCompleted) {
@@ -49,7 +65,6 @@ function App() {
                       isCompleted={task.isCompleted}
                       dueDate={task.dueDate}
                       onToggle={(newIsCompleted) => {
-                        console.log(newIsCompleted);
                         setTasks(
                           tasks.map((t) => {
                             if (t.title === task.title) {
@@ -71,7 +86,7 @@ function App() {
               })}
             </AnimateGroup>
             <Spacer height="25px" />
-            <Header title={"Completed"} itemCount={3} />
+            <Header title={"Completed"} itemCount={getCompletedCount()} />
             <AnimateGroup>
               {tasks.map((task) => {
                 if (task.isCompleted) {
@@ -107,6 +122,13 @@ function App() {
           <EditOptions
             task={tasks.find((t) => t.id === editTaskId)}
             onCancel={() => {
+              setEditTaskId(null);
+            }}
+            onSave={(newTask) => {
+              let newTasks = [...tasks];
+              newTasks[newTasks.findIndex((t) => t.id === newTask.id)] =
+                newTask;
+              setTasks(newTasks);
               setEditTaskId(null);
             }}
           />

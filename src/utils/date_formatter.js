@@ -2,15 +2,22 @@ class DateFormatter{
     static monthsShort = [
         "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     ];
-    static formatToYMD(date){
-        // return "yyyy-MM-dd"
-        const date = new Date(this.dueDate);
-        return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+
+    static padZero(n){
+        return n < 10 ? `0${n}` : n;
     }
 
-    static formateToMD(date){
+    static formatToYMD(d){
+        // return "yyyy-MM-dd"
+        const date = new Date(d);
+        return `${date.getFullYear()}-${this.padZero(date.getMonth() + 1)}-${this.padZero(date.getDate())}`;
+    }
+
+    static formateToMD(d){
         // return "MMM dd"
-        const date = new Date(this.dueDate);
-        return `${this.monthsShort[date.getMonth()]} ${date.getDate()}`;
+        const date = new Date(d);
+        return `${this.monthsShort[date.getMonth()]} ${this.padZero(date.getDate())}`;
     }
 }
+
+export default DateFormatter;

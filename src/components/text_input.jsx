@@ -1,15 +1,18 @@
 import "../styles/text_input.css";
 import { useState } from "react";
 
+/**
+ * onSubmit can return a value which will be set as the value of the input
+ */
 function TextInput({
-  onSubmit = () => {},
+  onSubmit = (currentValue) => {},
   placeholder,
   prefixIcon,
   type = "text",
   isTextArea = false,
-  value,
+  value = "",
+  inputClassName,
 }) {
-  const [inputValue, setInputValue] = useState(value);
   const [focused, setFocused] = useState(false);
   const onFocus = () => setFocused(true);
   const onBlur = () => setFocused(false);
@@ -21,30 +24,36 @@ function TextInput({
         {isTextArea ? (
           <textarea
             type={type}
-            value={inputValue}
+            defaultValue={value}
             placeholder={placeholder}
             onFocus={onFocus}
             onBlur={onBlur}
+            className={inputClassName}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                onSubmit(inputValue);
+                var newValue = onSubmit(e.target.value);
+                if (newValue !== undefined) {
+                  e.target.value = newValue;
+                }
               }
             }}
-            onChange={(e) => setInputValue(e.target.value)}
           />
         ) : (
           <input
             type={type}
             placeholder={placeholder}
-            value={inputValue}
+            defaultValue={value}
             onFocus={onFocus}
             onBlur={onBlur}
+            className={inputClassName}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                onSubmit(inputValue);
+                var newValue = onSubmit(e.target.value);
+                if (newValue !== undefined) {
+                  e.target.value = newValue;
+                }
               }
             }}
-            onChange={(e) => setInputValue(e.target.value)}
           />
         )}
       </div>
