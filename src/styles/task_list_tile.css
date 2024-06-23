@@ -48,6 +48,20 @@ div:has(.tlt) {
   position: relative;
 }
 
+.tlt .subtitle {
+  font-size: 13px;
+  margin-left: 10px;
+  position: relative;
+  max-height: 0px;
+  opacity: 0;
+  transition: all 500ms cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.tlt:hover .subtitle{
+  max-height: 100px;
+  opacity: .75;
+}
+
 .tlt .trailing {
   color: #919191;
   font-size: 13px;

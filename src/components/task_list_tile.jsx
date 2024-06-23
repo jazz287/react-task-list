@@ -6,23 +6,33 @@ import {
 import "../styles/task_list_tile.css";
 import DateFormatter from "../utils/date_formatter";
 
-function TaskListTile({ title, dueDate, onToggle, isCompleted, onEditInitiate, onDelete }) {
+function TaskListTile({ task, onToggle, onEditInitiate, onDelete }) {
   return (
     <div
-      className={"tlt" + (isCompleted ? " tlt-checked" : "")}
+      className={"tlt" + (task.isCompleted ? " tlt-checked" : "")}
       onClick={() => {
-        onToggle(!isCompleted);
+        onToggle(!task.isCompleted);
       }}
     >
       <span className="left">
         <CheckCircleOutlined />
-        <div className="title">
-          {title}
-          <div className="lineAcross"></div>
+        <div>
+          <div className="title">
+            {task.title}
+            <div className="lineAcross"></div>
+          </div>
+          {
+            // only show description for incomplete tasks
+            !task.isCompleted ? (
+              <div className="subtitle">{task.description}</div>
+            ) : null
+          }
         </div>
       </span>
       <div className="trailing">
-        <span className="trailing-text">{DateFormatter.formateToMD(dueDate)}</span>
+        <span className="trailing-text">
+          {DateFormatter.formateToMD(task.dueDate)}
+        </span>
         <div className="trailing-options">
           <EditFilled
             className="option"

@@ -61,9 +61,7 @@ function App() {
                   return (
                     <TaskListTile
                       key={task.id}
-                      title={task.title}
-                      isCompleted={task.isCompleted}
-                      dueDate={task.dueDate}
+                      task = {task}
                       onToggle={(newIsCompleted) => {
                         setTasks(
                           tasks.map((t) => {
@@ -93,9 +91,7 @@ function App() {
                   return (
                     <TaskListTile
                       key={task.id}
-                      title={task.title}
-                      isCompleted={task.isCompleted}
-                      dueDate={task.dueDate}
+                      task = {task}
                       onToggle={(newIsCompleted) => {
                         setTasks(
                           tasks.map((t) => {
