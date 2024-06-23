@@ -1,4 +1,5 @@
 import MainContent from "./components/main_content";
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "./components/navbar";
 import Spacer from "./components/spacer";
 import "./styles/App.css";

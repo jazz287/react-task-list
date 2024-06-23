@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./header";
 import TextInput from "./text_input";
 import TaskListTile from "./task_list_tile";
@@ -7,13 +7,13 @@ import EditOptions from "./edit_options";
 import { PlusOutlined, EditOutlined } from "@ant-design/icons";
 import Task from "../models/task";
 import Spacer from "./spacer";
+import { fetchAllTasks } from "../services/task_service";
+import { Slide, ToastContainer, toast } from "react-toastify";
 
 function MainContent() {
   const [editTaskId, setEditTaskId] = useState(null);
-  const [tasks, setTasks] = useState([
-    new Task(1, "Feed the dogs", "Feeding Details", false, Date.now()),
-    new Task(2, "Eat Ramen", "Ramen recipe", false, Date.now()),
-  ]);
+  const [loading, setLoading] = useState(true);
+  const [tasks, setTasks] = useState([]);
 
   const getRemainingCount = () => {
     return tasks.filter((t) => !t.isCompleted).length;
@@ -22,6 +22,39 @@ function MainContent() {
   const getCompletedCount = () => {
     return tasks.filter((t) => t.isCompleted).length;
   };
+
+  useEffect(() => {
+    async function loadTasks() {
+      try {
+        var data = await fetchAllTasks();
+        setTasks(data);
+      } catch (error) {
+        var msg = error.message;
+        if (msg === "Failed to fetch") {
+          msg =
+            "Failed to fetch tasks. Please make sure the backend server is running on port 3000";
+        }
+        toast.error(msg, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Slide,
+        });
+      }
+      setLoading(false);
+    }
+
+    loadTasks();
+  }, []);
+
+  if (loading) {
+    return <></>;
+  }
   return (
     <>
       <TextInput
@@ -81,11 +114,31 @@ function MainContent() {
           }}
         />
       )}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition:Slide
+      />
     </>
   );
 }
 
-function HeaderWithContent({ heading, headingCount, tasksList, setTasks, tasks, setEditTaskId}) {
+function HeaderWithContent({
+  heading,
+  headingCount,
+  tasksList,
+  setTasks,
+  tasks,
+  setEditTaskId,
+}) {
   return (
     <>
       <Header title={heading} itemCount={headingCount} />
