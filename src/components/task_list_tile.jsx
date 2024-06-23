@@ -5,7 +5,7 @@ import {
 } from "@ant-design/icons";
 import "../styles/task_list_tile.css";
 
-function TaskListTile({ title, dueDate, onToggle, isCompleted }) {
+function TaskListTile({ title, dueDate, onToggle, isCompleted, onEditInitiate, onDelete }) {
   return (
     <div
       className={"tlt" + (isCompleted ? " tlt-checked" : "")}
@@ -27,12 +27,14 @@ function TaskListTile({ title, dueDate, onToggle, isCompleted }) {
             className="option"
             onClick={(e) => {
               e.stopPropagation();
+              onEditInitiate();
             }}
           />
           <DeleteOutlined
             className="option"
             onClick={(e) => {
               e.stopPropagation();
+              onDelete();
             }}
           />
         </div>
