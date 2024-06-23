@@ -66,7 +66,7 @@ function MainContent() {
         placeholder={editTaskId == null ? "Add a new task" : "Edit task"}
         prefixIcon={editTaskId == null ? <PlusOutlined /> : <EditOutlined />}
         inputClassName="main-input"
-        suffixText="Enter"
+        suffixText={editTaskId == null ? "Enter" : null}
         onSubmit={(title) => {
           if (editTaskId == null && title.trim().length !== 0) {
             var newTask = new Task(
