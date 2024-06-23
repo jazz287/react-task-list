@@ -1,42 +1,99 @@
+import { useState } from "react";
 import Header from "./components/header";
 import MainInput from "./components/main_input";
 import Spacer from "./components/spacer";
 import TaskListTile from "./components/task_list_tile";
 import "./styles/App.css";
+import { AnimateGroup } from "react-animate-mount";
 
 function App() {
+  const [tasks, setTasks] = useState([
+    {
+      title: "Feed the dogs",
+      isCompleted: false,
+      dueDate: "Nov 10",
+    },
+    {
+      title: "Eat Ramen",
+      isCompleted: false,
+      dueDate: "Nov 10",
+    },
+    {
+      title: "Survive",
+      isCompleted: false,
+      dueDate: "Nov 10",
+    },
+    {
+      title: "Touch Grass",
+      isCompleted: false,
+      dueDate: "Nov 10",
+    },
+  ]);
   return (
     <>
       <main>
-        <MainInput />
+        <MainInput
+          onSubmit={(title) => {
+            setTasks([
+              ...tasks,
+              { title, isCompleted: false, dueDate: "Nov 10" },
+            ]);
+          }}
+        />
         <Spacer />
         <Header title={"ToDo"} itemCount={4} />
-        {["Feed the dogs", "Eat Ramen", "Survive", "Touch Grass"].map(
-          (task) => {
+        <AnimateGroup>
+        {tasks.map((task) => {
+          if (!task.isCompleted) {
             return (
               <TaskListTile
-                key={task}
-                title={task}
+                key={task.title}
+                title={task.title}
                 isCompleted={false}
-                dueDate={"Nov 10"}
+                dueDate={task.dueDate}
+                onToggle={(newIsCompleted) => {
+                  console.log(newIsCompleted);
+                  setTasks(
+                    tasks.map((t) => {
+                      if (t.title === task.title) {
+                        return { ...t, isCompleted: newIsCompleted };
+                      }
+                      return t;
+                    })
+                  );
+                }}
               />
             );
           }
-        )}
-        <Spacer height="25px"/>
+        })}
+        </AnimateGroup>
+        <Spacer height="25px" />
         <Header title={"Completed"} itemCount={3} />
-        {["Feed the dogs", "Eat Ramen", "Survive", "Touch Grass"].map(
-          (task) => {
-            return (
-              <TaskListTile
-                key={task}
-                title={task}
-                isCompleted={false}
-                dueDate={"Nov 10"}
-              />
-            );
-          }
-        )}
+        <AnimateGroup>
+          {tasks.map((task) => {
+            if (task.isCompleted) {
+              return (
+                <TaskListTile
+                  key={task.title}
+                  title={task.title}
+                  isCompleted={true}
+                  dueDate={task.dueDate}
+                  onToggle={(newIsCompleted) => {
+                    console.log(newIsCompleted);
+                    setTasks(
+                      tasks.map((t) => {
+                        if (t.title === task.title) {
+                          return { ...t, isCompleted: newIsCompleted };
+                        }
+                        return t;
+                      })
+                    );
+                  }}
+                />
+              );
+            }
+          })}
+        </AnimateGroup>
       </main>
     </>
   );

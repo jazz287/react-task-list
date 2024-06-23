@@ -2,13 +2,12 @@ import { CheckCircleOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import "../styles/task_list_tile.css";
 
-function TaskListTile({ title, dueDate }) {
-  let [isCompleted, setIsCompleted] = useState(false);
+function TaskListTile({ title, dueDate , onToggle, isCompleted}) {
   return (
     <div
       className={"tlt" + (isCompleted ? " tlt-checked" : "")}
       onClick={() => {
-        setIsCompleted(!isCompleted);
+        onToggle(!isCompleted);
       }}
     >
       <span>

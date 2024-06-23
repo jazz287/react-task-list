@@ -7,6 +7,10 @@
     justify-content: space-between;
 }
 
+div:has(div > .tlt){
+    width: 100%;
+}
+
 .tlt:hover{
     background-color: #282828;
 }
@@ -26,7 +30,9 @@
 }
 
 .tlt:is(.tlt-checked) svg path:first-child{
-    opacity: 1;
+    animation: showCheck 250ms ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: 300ms;
 }
 
 .tlt .title{
@@ -57,6 +63,30 @@
 }
 
 .tlt:is(.tlt-checked) .title .lineAcross{
-    bottom: 10px;
-    opacity: 1;
+    /* bottom: 10px;
+    opacity: 1; */
+    animation: lineEnterAnimation 250ms ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: 300ms;
+}
+
+/* animations for selected task mount */
+@keyframes lineEnterAnimation{
+    from {
+        bottom: 0px;
+        opacity: 0;
+    }
+    to{
+        bottom: 10px;
+        opacity: 1;
+    }
+}
+
+@keyframes showCheck{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
 }
