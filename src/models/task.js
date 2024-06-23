@@ -3,7 +3,7 @@ class Task{
     // title: string
     // description: string
     // isCompleted: boolean
-    // dueDate: string // 'Month-Date'
+    // dueDate: in milliseconds since epoch
     constructor(id, title, description, isCompleted, dueDate){
         this.id = id;
         this.title = title;

@@ -7,7 +7,9 @@ function TextInput({
   prefixIcon,
   type = "text",
   isTextArea = false,
+  value,
 }) {
+  const [inputValue, setInputValue] = useState(value);
   const [focused, setFocused] = useState(false);
   const onFocus = () => setFocused(true);
   const onBlur = () => setFocused(false);
@@ -19,26 +21,30 @@ function TextInput({
         {isTextArea ? (
           <textarea
             type={type}
+            value={inputValue}
             placeholder={placeholder}
             onFocus={onFocus}
             onBlur={onBlur}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                onSubmit(e.target.value);
+                onSubmit(inputValue);
               }
             }}
+            onChange={(e) => setInputValue(e.target.value)}
           />
         ) : (
           <input
             type={type}
             placeholder={placeholder}
+            value={inputValue}
             onFocus={onFocus}
             onBlur={onBlur}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                onSubmit(e.target.value);
+                onSubmit(inputValue);
               }
             }}
+            onChange={(e) => setInputValue(e.target.value)}
           />
         )}
       </div>

@@ -1,0 +1,22 @@
+.edit-options{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.edit-options button{
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.edit-options .label{
+    color: #b4b4b4;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.edit-options .right{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}

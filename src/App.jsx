@@ -13,8 +13,8 @@ import { PlusOutlined, EditOutlined } from "@ant-design/icons";
 function App() {
   const [editTaskId, setEditTaskId] = useState(null);
   const [tasks, setTasks] = useState([
-    new Task(1, "Feed the dogs", "Feed the dogs", false, "Nov 10"),
-    new Task(2, "Eat Ramen", "Eat Ramen", false, "Nov 10"),
+    new Task(1, "Feed the dogs", "Feed the dogs", false, Date.now()),
+    new Task(2, "Eat Ramen", "Eat Ramen", false, Date.now()),
     // new Task(3, "Survive", "Survive", false, "Nov 10"),
     // new Task(4, "Touch Grass", "Touch Grass", false, "Nov 10"),
   ]);
@@ -30,7 +30,7 @@ function App() {
             if (editTaskId == null) {
               setTasks([
                 ...tasks,
-                new Task(tasks.length + 1, title, title, false, "Nov 10"),
+                new Task(tasks.length + 1, title, title, false, Date.now()),
               ]);
             }
           }}
@@ -82,7 +82,6 @@ function App() {
                       isCompleted={task.isCompleted}
                       dueDate={task.dueDate}
                       onToggle={(newIsCompleted) => {
-                        console.log(newIsCompleted);
                         setTasks(
                           tasks.map((t) => {
                             if (t.title === task.title) {
