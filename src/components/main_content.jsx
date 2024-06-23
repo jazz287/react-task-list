@@ -11,8 +11,8 @@ import { fetchAllTasks } from "../services/task_service";
 import { Slide, ToastContainer, toast } from "react-toastify";
 
 function MainContent() {
-  const [editTaskId, setEditTaskId] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [editTaskId, setEditTaskId] = useState(null);
   const [tasks, setTasks] = useState([]);
 
   const getRemainingCount = () => {
@@ -28,6 +28,17 @@ function MainContent() {
       try {
         var data = await fetchAllTasks();
         setTasks(data);
+        toast.success("Connected to backend server", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Slide,
+        });
       } catch (error) {
         var msg = error.message;
         if (msg === "Failed to fetch") {
@@ -45,6 +56,22 @@ function MainContent() {
           theme: "dark",
           transition: Slide,
         });
+        setTimeout(() => {
+          toast.info(
+            "Backend is not available, all new modifications will be lost on refresh",
+            {
+              position: "bottom-right",
+              autoClose: 8000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+              transition: Slide,
+            }
+          );
+        }, 2000);
       }
       setLoading(false);
     }
