@@ -12,6 +12,7 @@ function TextInput({
   isTextArea = false,
   value = "",
   inputClassName,
+  suffixText,
 }) {
   const [focused, setFocused] = useState(false);
   const onFocus = () => setFocused(true);
@@ -56,6 +57,7 @@ function TextInput({
             }}
           />
         )}
+        {suffixText && <div className="suffix">{suffixText}</div>}
       </div>
     </div>
   );

@@ -16,8 +16,8 @@
   outline: none;
   display: flex;
   align-items: center;
+  position: relative;
 }
-
 
 @media (max-width: 768px) {
   .text-input {
@@ -44,6 +44,29 @@
 .prefix span svg {
   width: 15px;
   height: 15px;
+}
+
+.suffix{
+  margin-right: 8px;
+  background-color: black;
+  color: #525252;
+  /* inset shadow to give it a button like look */
+  box-shadow: inset 0 0 0 1px #525252, inset 0 0 0 2px #282828, 0 0 0 1px #282828;
+  border-radius: 4px;
+  padding: 2px 4px;
+  pointer-events: none;
+  opacity: 0.75;
+  font-size: 12px;
+  text-transform: uppercase;
+  position: absolute;
+  right: -50px;
+  opacity: 0;
+  transition: all 0.25s ease-in-out;
+}
+
+.text-input input:focus + .suffix {
+  opacity: 1;
+  right: 0px;
 }
 
 ::placeholder {
